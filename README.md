@@ -1,0 +1,2 @@
+# MAPS
+Mesh simplification
