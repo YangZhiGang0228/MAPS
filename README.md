@@ -1,2 +1,2 @@
 # MAPS
-This project is the implimentation of the MAPS: Multiresolution Adaptive Parameterization of Surfaces.
+This project is the implementation of the MAPS: Multiresolution Adaptive Parameterization of Surfaces.
