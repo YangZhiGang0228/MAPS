@@ -19,12 +19,19 @@ During the vertex removal process, through surface parameterization, we find whi
 ## 2 Mesh subdividion and remesh
 ### 2.1 Subdivision
 We subdivide the simplified mesh using midpoint subdivision.
+
 <img width="395" height="473" alt="image" src="https://github.com/user-attachments/assets/2c40523a-fb1a-4cfe-8448-4e2e782e91e5" />
 
 
 ### 2.2 Remesh
 
 Because the positional relationships between the original vertices and the hierarchical levels are recorded during the simplification process, the corresponding location of a subdivided vertex in the original mesh can be found, thereby enabling remeshing.
+
+<img width="901" height="351" alt="image" src="https://github.com/user-attachments/assets/d8df71e0-99fe-4c89-8aaa-a727ba7684cc" />
+
+
+### 3 Feature Line
+
 <img width="1075" height="768" alt="image" src="https://github.com/user-attachments/assets/5fe08f99-59b1-412b-8026-1cb77f708fa3" />
 
 
