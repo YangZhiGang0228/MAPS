@@ -65,14 +65,6 @@ public:
 	};
 };
 
-// template <typename Trait = OpenMesh::DefaultTraits>
-// class maps:public OpenMesh::TriMesh_ArrayKernelT<Trait>
-// {
-// public:
-//     maps(){};
-//     ~maps(){};
-// };
-
 class BaseMesh:public maps<mapstraits>
 {
 public:
