@@ -7,7 +7,8 @@ The order of vertex removal is determined based on the curvature magnitude of ve
 
 Some results as follow：
 
-<img width="794" height="357" alt="image" src="https://github.com/user-attachments/assets/942f5c7d-8c74-455e-8605-010104df1372" />
+<img width="758" height="455" alt="image" src="https://github.com/user-attachments/assets/651d3bf6-245c-4bde-a57b-39e1db0584a7" />
+
 
 
 
