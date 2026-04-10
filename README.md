@@ -30,7 +30,7 @@ Because the positional relationships between the original vertices and the hiera
 <img width="901" height="351" alt="image" src="https://github.com/user-attachments/assets/d8df71e0-99fe-4c89-8aaa-a727ba7684cc" />
 
 
-### 3 Feature Line
+## 3 Feature Line
 
 <img width="1075" height="768" alt="image" src="https://github.com/user-attachments/assets/5fe08f99-59b1-412b-8026-1cb77f708fa3" />
 
