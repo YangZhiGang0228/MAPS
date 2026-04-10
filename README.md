@@ -1,5 +1,5 @@
 # MAPS
-This project is the implementation of the MAPS: Multiresolution Adaptive Parameterization of Surfaces.
+This project is an improved implementation of MAPS: Multiresolution Adaptive Parameterization of Surfaces.
 
 ## 1 Mesh simplification and self-parameterization
 ### 1.1 Simplification
