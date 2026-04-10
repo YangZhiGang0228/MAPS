@@ -28,12 +28,10 @@ typedef OpenMesh::TriMesh_ArrayKernelT<>::VertexHandle VertexHandle;
 typedef OpenMesh::TriMesh_ArrayKernelT<>::FaceHandle FaceHandle;
 typedef OpenMesh::TriMesh_ArrayKernelT<>::HalfedgeHandle  HalfedgeHandle;
 typedef OpenMesh::TriMesh_ArrayKernelT<>::Point Point;
+typedef OpenMesh::TriMesh_ArrayKernelT<>::Normal Normal;
 typedef OpenMesh::Vec2d Vec2d;
 typedef OpenMesh::Vec3d Vec3d;
 typedef OpenMesh::TriMesh_ArrayKernelT<> MyMesh;
-
-typedef CGAL::Exact_predicates_exact_constructions_kernel K;
-typedef K::Point_2 Point_2;
 
 
 using Barycoor = std::array<std::pair<unsigned int,double>,3>;
@@ -55,7 +53,16 @@ public:
         //update times
         unsigned int c=1;
         std::optional<Barycoor>barycoor;
+
+		//feature edge flag
+        int feature_edge_count = 0;
+        bool is_dart = false;
+        bool is_corner = false;
     };
+
+    EdgeTraits{
+        bool is_feature = false; //feature edge;
+	};
 };
 
 // template <typename Trait = OpenMesh::DefaultTraits>
@@ -86,12 +93,25 @@ public:
     };
     BaseMesh(const BaseMesh& mapMesh) = default;
 
+    struct EdgeKey {
+        unsigned int v0, v1;
+        EdgeKey(unsigned int a, unsigned int b) {
+            v0 = std::min(a, b);
+            v1 = std::max(a, b);
+        }
+        bool operator<(const EdgeKey& other) const {
+            return (v0 < other.v0) || (v0 == other.v0 && v1 < other.v1);
+        }
+    };
+
+
 
 
 
 public:
 
     void Initialization();
+	void detect_feature_edges(double threshold_degree);
     bool check_uv_flip(std::array<Vec2d, 3>uv_face);
     bool check_all_orifaces_uv_flip(std::vector<FaceHandle>ring_faces, std::vector<std::pair<VertexHandle, Vec2d>> coordinates);
 
@@ -104,13 +124,15 @@ public:
 	void compute_ringArea(const VertexHandle& v_h);
     void initial_weights(double lamda);
     void map2plane(VertexHandle v_h,std::vector<std::pair<VertexHandle,Vec2d>>&coordinates);
-    void CGAL_CDT(const std::vector<std::pair<VertexHandle, Vec2d>>& coordinates, std::vector<std::array<VertexHandle, 3>>& faces);
+    void CGAL_CDT(const std::vector<std::pair<VertexHandle, Vec2d>>& coordinates, std::vector<std::array<VertexHandle, 3>>& faces,
+        std::pair<VertexHandle,VertexHandle> feature_constraint = {VertexHandle(-1),VertexHandle(-1)});
     void Retriangle(const VertexHandle &deletevertex,unsigned int remaining_nfs);
     void construt_bm(unsigned int remaining_nfs);
     void save_pts();
+    void save_feature_lines(const std::string& filename);
 
     void MidSubdivision(unsigned int level);
-    void remesh_(unsigned int level,string output_dir,string basename);
+    void remesh_(unsigned int level);
 
     bool areElementsUnique(const std::vector<std::array<unsigned int, 3>>& vec) {
         std::set<std::array<unsigned int, 3>> seen(vec.begin(), vec.end());
